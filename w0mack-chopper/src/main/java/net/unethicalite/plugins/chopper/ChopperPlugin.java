@@ -24,6 +24,7 @@ import net.unethicalite.api.items.Inventory;
 import net.unethicalite.api.movement.Movement;
 import net.unethicalite.api.movement.Reachable;
 import net.unethicalite.api.movement.pathfinder.GlobalCollisionMap;
+import net.unethicalite.api.movement.pathfinder.model.BankLocation;
 import net.unethicalite.api.plugins.LoopedPlugin;
 import net.unethicalite.api.scene.Tiles;
 import net.unethicalite.api.utils.MessageUtils;
@@ -182,16 +183,18 @@ public class ChopperPlugin extends LoopedPlugin
 		{
 			if (Inventory.isFull())
 			{
-//				NPC banker = NPCs.getNearest("Banker");
-//				if (banker != null) {
-//					banker.interact("Bank");
-//					return -3;
-//				}
-//				MessageUtils.addMessage("Can't find banker! Walking to the closest bank!", ChatColorType.HIGHLIGHT);
+				NPC banker = NPCs.getNearest("Banker");
+				if (banker != null)
+				{
+					Movement.walkTo(BankLocation.DRAYNOR_BANK);
+					banker.interact("Bank");
+					return -3;
+				}
+				MessageUtils.addMessage("Can't find banker! Walking to the closest bank!", ChatColorType.HIGHLIGHT);
 				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
 				if (bank != null)
 				{
-					Movement.walkTo(bank);
+					Movement.walkTo(BankLocation.DRAYNOR_BANK);
 					bank.interact("Bank", "Use");
 					Bank.depositInventory();
 					return -3;
