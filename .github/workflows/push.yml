@@ -16,10 +16,10 @@ jobs:
 #          mkdir release
 
       - name: Make gradlew executable
-#        run: chmod +x ./gradlew
+        run: chmod +x ./gradlew
 
       - name: Gradle Build
-#        run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./gradlew clean build bootstrapPlugins
+        run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./gradlew clean build bootstrapPlugins
 
       - name: Push to release branch
         run: |
