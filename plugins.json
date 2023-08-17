@@ -119,11 +119,10 @@
   "projectUrl": "",
   "provider": "w0mack",
   "name": "w0mack Chopper",
-  "description": "Chops trees bitch",
+  "description": "Chops trees test",
   "id": "w0mackchopper-plugin",
   "releases": [{
     "date": "2023-07-13",
-    "sha512sum": "3844B4AB0A8D3A4D2C24DC8EBF36DBEF41E6C47D070F3BD1DF87DB9D20E5B8DD50C582918FC222428A7F74CAD0D3AFBB553FE5AF1A8A5459308595F043EFCDF4",
     "version": "0.0.2",
     "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.1.jar?raw=true",
     "requires": "^1.0.0"
