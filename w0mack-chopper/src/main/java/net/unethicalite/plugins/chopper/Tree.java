@@ -13,7 +13,7 @@ public enum Tree
 	MAHOGANY(50, "Mahogany tree"),
 	YEW(60, "Yew tree"),
 	MAGIC(75, "Magic tree"),
-	REDWOOD(90,"Redwood tree");
+	REDWOOD(90, "Redwood tree");
 
 	private final int level;
 	private final String[] names;
