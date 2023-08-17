@@ -19,6 +19,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.unethicalite.api.entities.NPCs;
 import net.unethicalite.api.entities.Players;
 import net.unethicalite.api.entities.TileObjects;
+import net.unethicalite.api.items.Bank;
 import net.unethicalite.api.items.Inventory;
 import net.unethicalite.api.movement.Movement;
 import net.unethicalite.api.movement.Reachable;
@@ -190,7 +191,9 @@ public class ChopperPlugin extends LoopedPlugin
 				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
 				if (bank != null)
 				{
+					Movement.walkTo(bank);
 					bank.interact("Bank", "Use");
+					Bank.depositInventory();
 					return -3;
 				}
 				MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
