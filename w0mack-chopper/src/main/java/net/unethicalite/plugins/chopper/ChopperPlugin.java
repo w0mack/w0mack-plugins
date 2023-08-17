@@ -190,11 +190,12 @@ public class ChopperPlugin extends LoopedPlugin
 //					return -3;
 //				}
 				MessageUtils.addMessage("Walking to the closest bank!", ChatColorType.HIGHLIGHT);
-				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 30, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
+				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Bank"));
 				if (bank != null)
 				{
-					bank.interact("Bank", "Use");
+					bank.interact("Bank");
 					Bank.depositInventory();
+					Bank.close();
 					return -3;
 				}
 				MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
