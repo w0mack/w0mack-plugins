@@ -1,7 +1,7 @@
 version = "0.0.2"
 
 project.extra["PluginName"] = "w0mack Chopper"
-project.extra["PluginDescription"] = "Chops trees"
+project.extra["PluginDescription"] = "Chops trees bitches"
 
 tasks {
     jar {
