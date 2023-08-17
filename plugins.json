@@ -113,7 +113,7 @@
     "sha512sum": "7A88684B6762B17B7DC1C278E99C6017AFFFEDC86C2D2A176042C30E829DDB50061F777F198B5573DB3D05B755F198E9DEAF535B04663FE2D582D01E2CEA094F",
     "version": "0.0.1",
     "url": "https://github.com/melxin/devious-plugins-extended/blob/master/release/unethical-butler-0.0.1.jar?raw=true",
-    "requires": "^1.0.0"
+
   }]
 }, {
   "projectUrl": "",
