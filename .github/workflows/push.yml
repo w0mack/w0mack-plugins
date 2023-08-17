@@ -32,4 +32,4 @@ jobs:
           git config --global user.name "Github Actions"
           git add -A
           git commit -m 'Plugins auto release'
-          git push https://buracc:${{ secrets.REPO_PAT }}@github.com/unethicalite/unethicalite-plugins-release.git master
+          git push https://buracc:${{ secrets.REPO_PAT }}@github.com/w0mack/w0mack-plugins.git master
