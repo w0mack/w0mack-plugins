@@ -13,7 +13,7 @@ jobs:
       - name: Prepare bootstrap files
         run: |
           touch plugins.json
-          mkdir release
+#          mkdir release
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
