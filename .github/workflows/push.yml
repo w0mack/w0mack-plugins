@@ -19,11 +19,11 @@ jobs:
 #        run: chmod +x ./gradlew
 
       - name: Gradle Build
-        run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./gradlew clean build bootstrapPlugins
+#        run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./gradlew clean build bootstrapPlugins
 
       - name: Push to release branch
         run: |
-          git clone https://github.com/unethicalite/unethicalite-plugins-release.git deploy
+          git clone https://github.com/w0mack/w0mack-plugins.git deploy
           cp -r ./release/. ./deploy
           cp plugins.json deploy
           cd deploy
