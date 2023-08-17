@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https:github.com/Owain94>
+ * Copyright (c) 2023 Harrison Womack <https:github.com/w0mack>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,7 @@ include("unethical-oneclick")
 include("unethical-agility")
 include("unethical-prayer")
 include("unethical-explorer")
-include("unethical-chopper")
+include("w0mack-chopper")
 include("unethical-zulrah")
 include("unethical-cooker")
 include("unethical-bankpin")
