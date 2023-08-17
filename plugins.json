@@ -117,15 +117,15 @@
   }]
 }, {
   "projectUrl": "",
-  "provider": "melxin",
-  "name": "Unethical Chopper",
+  "provider": "w0mack",
+  "name": "w0mack Chopper",
   "description": "Chops trees",
-  "id": "unethicalchopper-plugin",
+  "id": "w0mackchopper-plugin",
   "releases": [{
-    "date": "2023-07-13",
-    "sha512sum": "0B84A3E040F62A592C107D6099E987766C690C76931F869CE425BF1F9FB5E658096926F1EACA2C51CEE959BEBB5965F30EFDA8A4D5538875CA20D8E7308E7947",
-    "version": "0.0.3",
-    "url": "https://github.com/melxin/devious-plugins-extended/blob/master/release/unethical-chopper-0.0.3.jar?raw=true",
+    "date": "2023-08-17",
+    "sha512sum": "2a6f35eeae96f7f1b1854a6a79c9dbea06a7541405ecc3d8d74f53c7322a178d1ad2727b155158e4e2180cf79113173dc64d8da7c33f25521c46a6bed1db599f",
+    "version": "0.0.1",
+    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.1.jar?raw=true",
     "requires": "^1.0.0"
   }]
 }, {
