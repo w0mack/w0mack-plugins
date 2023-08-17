@@ -125,8 +125,7 @@
     "date": "2023-07-13",
     "sha512sum": "3844b4ab0a8d3a4d2c24dc8ebf36dbef41e6c47d070f3bd1df87db9d20e5b8dd50c582918fc222428a7f74cad0d3afbb553fe5af1a8a5459308595f043efcdf4",
     "version": "0.0.2",
-    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.1.jar?raw=true",
-    "requires": "^1.0.0"
+    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.1.jar?raw=true"
   }]
 }, {
   "projectUrl": "",
