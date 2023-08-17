@@ -5,14 +5,18 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.GameObject;
+import net.runelite.api.NPC;
 import net.runelite.api.Tile;
+import net.runelite.api.TileObject;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ConfigButtonClicked;
 import net.runelite.api.events.GameTick;
+import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.unethicalite.api.entities.NPCs;
 import net.unethicalite.api.entities.Players;
 import net.unethicalite.api.entities.TileObjects;
 import net.unethicalite.api.items.Inventory;
@@ -21,6 +25,7 @@ import net.unethicalite.api.movement.Reachable;
 import net.unethicalite.api.movement.pathfinder.GlobalCollisionMap;
 import net.unethicalite.api.plugins.LoopedPlugin;
 import net.unethicalite.api.scene.Tiles;
+import net.unethicalite.api.utils.MessageUtils;
 import org.pf4j.Extension;
 
 import javax.inject.Inject;
@@ -31,7 +36,7 @@ import java.util.stream.Collectors;
 
 @Extension
 @PluginDescriptor(
-		name = "Unethical Chopper",
+		name = "w0mack Chopper",
 		description = "Chops trees",
 		enabledByDefault = false
 )
@@ -76,7 +81,7 @@ public class ChopperPlugin extends LoopedPlugin
 	@Subscribe
 	public void onConfigButtonPressed(ConfigButtonClicked event)
 	{
-		if (!event.getGroup().contains("unethical-chopper") || !event.getKey().toLowerCase().contains("start"))
+		if (!event.getGroup().contains("w0mack-chopper") || !event.getKey().toLowerCase().contains("start"))
 		{
 			return;
 		}
@@ -171,8 +176,25 @@ public class ChopperPlugin extends LoopedPlugin
 					return 500;
 				}
 			}
-		}
-		else
+		} else if (config.bankLogs()) {
+
+			NPC banker = NPCs.getNearest("Banker");
+			TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(),10, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
+
+			if (banker != null){
+				banker.interact("Bank");
+				return -3;
+			}
+			MessageUtils.addMessage("Can't find banker! Walking to the closest bank!", ChatColorType.HIGHLIGHT);
+
+			if (bank != null) {
+				bank.interact("Bank","Use");
+				return -3;
+			}
+			MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
+			return -1;
+
+		} else
 		{
 			if (logs != null && !local.isAnimating())
 			{
