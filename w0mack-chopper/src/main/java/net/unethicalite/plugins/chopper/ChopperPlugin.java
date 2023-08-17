@@ -195,6 +195,11 @@ public class ChopperPlugin extends LoopedPlugin
 				{
 					bank.interact("Bank");
 					Bank.depositInventory();
+					try {
+						wait(5000);
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					}
 					Bank.close();
 					return -3;
 				}
