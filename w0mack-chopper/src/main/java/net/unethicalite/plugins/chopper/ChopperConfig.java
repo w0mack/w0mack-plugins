@@ -5,7 +5,7 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("unethical-chopper")
+@ConfigGroup("w0mack-chopper")
 public interface ChopperConfig extends Config
 {
 	@ConfigItem(
@@ -31,10 +31,18 @@ public interface ChopperConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "bankLogs",
+			name = "Bank Logs",
+			description = "Banks logs instead of dropping them.",
+			position = 2
+	)
+	default boolean bankLogs() { return false; }
+
+	@ConfigItem(
 		keyName = "Start",
 		name = "Start/Stop",
 		description = "Start/Stop button",
-		position = 2)
+		position = 3)
 	default Button startStopButton()
 	{
 		return new Button();
