@@ -113,7 +113,7 @@
     "sha512sum": "7A88684B6762B17B7DC1C278E99C6017AFFFEDC86C2D2A176042C30E829DDB50061F777F198B5573DB3D05B755F198E9DEAF535B04663FE2D582D01E2CEA094F",
     "version": "0.0.1",
     "url": "https://github.com/melxin/devious-plugins-extended/blob/master/release/unethical-butler-0.0.1.jar?raw=true",
-
+    "requires": "^1.0.0"
   }]
 }, {
   "projectUrl": "",
@@ -126,7 +126,7 @@
     "sha512sum": "434b90c4200d5402d18f42a18dce150dd8531b12472e6f91dcf3f1dccd139106275c2c2dbb95f50bd6fa918b7f309e2004d28230616e32ef1a226c5f42f291b6",
     "version": "0.0.1",
     "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.1.jar?raw=true",
-    "requires": "^1.0.0"
+
   }]
 }, {
   "projectUrl": "",
