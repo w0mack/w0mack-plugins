@@ -28,7 +28,7 @@ jobs:
           cp plugins.json deploy
           cd deploy
           
-          git config --global user.email "burakinan1@hotmail.com"
+          git config --global user.email "harrison.womack@yahoo.com"
           git config --global user.name "Github Actions"
           git add -A
           git commit -m 'Plugins auto release'
