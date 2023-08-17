@@ -179,21 +179,23 @@ public class ChopperPlugin extends LoopedPlugin
 		}
 		else if (config.bankLogs())
 		{
-			NPC banker = NPCs.getNearest("Banker");
-			if (banker != null)
+			if (Inventory.isFull())
 			{
-				banker.interact("Bank");
-				return -3;
+//				NPC banker = NPCs.getNearest("Banker");
+//				if (banker != null) {
+//					banker.interact("Bank");
+//					return -3;
+//				}
+//				MessageUtils.addMessage("Can't find banker! Walking to the closest bank!", ChatColorType.HIGHLIGHT);
+				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
+				if (bank != null)
+				{
+					bank.interact("Bank", "Use");
+					return -3;
+				}
+				MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
+				return -1;
 			}
-			MessageUtils.addMessage("Can't find banker! Walking to the closest bank!", ChatColorType.HIGHLIGHT);
-			TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
-			if (bank != null)
-			{
-				bank.interact("Bank", "Use");
-				return -3;
-			}
-			MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
-			return -1;
 		}
 		else
 		{
