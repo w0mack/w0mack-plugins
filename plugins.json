@@ -6,9 +6,9 @@
   "id": "w0mack-chopper",
   "releases": [{
     "date": "2023-08-17",
-    "sha512sum": "5634ECC1FC854AD89B49AAF98919E47FE8D8244F931405F451193411D55EB89D32D116AF070B7E1DBE0E1FAC27072A24BD8B2338B536420E59B285D462CADD0E",
-    "version": "0.0.3",
-    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.3.jar?raw=true",
+    "sha512sum": "EC0C0EADBEF266F0285F595346FD9F9B6941CCE3741726C14782D8BFAD541D2530E672D3B04676A58DCBA8860996FED89B621D3B11CFE9DC4CE4E2C09A6F0EBB",
+    "version": "0.0.4",
+    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.4.jar?raw=true",
     "requires": "^1.0.0"
   }]
 }]
