@@ -23,7 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "unethicalite-plugins"
+rootProject.name = "w0mack-plugins"
 
 //include("hoot-blackjack")
 //include("hoot-trawler")
@@ -33,7 +33,7 @@ rootProject.name = "unethicalite-plugins"
 //include("hoot-notifier")
 //include("hoot-karambwanfisher")
 
-include("hoot-tempoross")
+//include("hoot-tempoross")
 
 include("unethical-fighter")
 include("unethical-butler")
