@@ -33,10 +33,13 @@ public interface ChopperConfig extends Config
 	@ConfigItem(
 			keyName = "bankLogs",
 			name = "Bank Logs",
-			description = "Banks logs instead of dropping them.",
+			description = "Make fire while chopping",
 			position = 2
 	)
-	default boolean bankLogs() { return false; }
+	default boolean bankLogs()
+	{
+		return false;
+	}
 
 	@ConfigItem(
 		keyName = "Start",
