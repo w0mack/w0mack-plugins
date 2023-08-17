@@ -52,9 +52,9 @@ include("unethical-tempoross")
 include("unethical-pickpocket")
 include("unethical-logout")
 
-include("m-autoswitcher")
-include("m-powerfisher")
-include("m-wintertodt")
+//include("m-autoswitcher")
+//include("m-powerfisher")
+// include("m-wintertodt")
 
 //include("example-kotlin")
 
