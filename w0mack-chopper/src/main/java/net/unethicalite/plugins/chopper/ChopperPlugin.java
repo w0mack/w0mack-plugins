@@ -4,10 +4,7 @@ import com.google.inject.Provides;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.GameObject;
-import net.runelite.api.NPC;
-import net.runelite.api.Tile;
-import net.runelite.api.TileObject;
+import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ConfigButtonClicked;
 import net.runelite.api.events.GameTick;
@@ -183,18 +180,19 @@ public class ChopperPlugin extends LoopedPlugin
 		{
 			if (Inventory.isFull())
 			{
-				NPC banker = NPCs.getNearest("Banker");
-				if (banker != null)
-				{
-					Movement.walkTo(BankLocation.DRAYNOR_BANK);
-					banker.interact("Bank");
-					return -3;
-				}
-				MessageUtils.addMessage("Can't find banker! Walking to the closest bank!", ChatColorType.HIGHLIGHT);
-				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
+				MessageUtils.addMessage("Inventory is full!",ChatColorType.HIGHLIGHT);
+				Movement.walkTo(BankLocation.DRAYNOR_BANK);
+//				NPC banker = NPCs.getNearest("Banker");
+//				if (banker != null)
+//				{
+//					Movement.walkTo(BankLocation.DRAYNOR_BANK);
+//					banker.interact("Bank");
+//					return -3;
+//				}
+				MessageUtils.addMessage("Walking to the closest bank!", ChatColorType.HIGHLIGHT);
+				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 30, obj -> obj.hasAction("Collect") || obj.getName().startsWith("Bank"));
 				if (bank != null)
 				{
-					Movement.walkTo(BankLocation.DRAYNOR_BANK);
 					bank.interact("Bank", "Use");
 					Bank.depositInventory();
 					return -3;
