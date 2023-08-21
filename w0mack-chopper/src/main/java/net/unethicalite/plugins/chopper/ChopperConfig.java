@@ -4,6 +4,8 @@ import net.runelite.client.config.Button;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.unethicalite.api.items.Bank;
+import net.unethicalite.api.movement.pathfinder.model.BankLocation;
 
 @ConfigGroup("w0mack-chopper")
 public interface ChopperConfig extends Config
@@ -20,10 +22,19 @@ public interface ChopperConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "bankLocation",
+			name = "Location",
+			description = "Where are you cutting trees",
+			position = 1
+	)
+	default BankLocation bankLocation() {return BankLocation.getNearest();}
+
+
+	@ConfigItem(
 			keyName = "makeFire",
 			name = "Make fire",
 			description = "Make fire while chopping",
-			position = 1
+			position = 2
 	)
 	default boolean makeFire()
 	{
@@ -34,7 +45,7 @@ public interface ChopperConfig extends Config
 			keyName = "bankLogs",
 			name = "Bank Logs",
 			description = "Make fire while chopping",
-			position = 2
+			position = 3
 	)
 	default boolean bankLogs()
 	{
@@ -45,7 +56,7 @@ public interface ChopperConfig extends Config
 		keyName = "Start",
 		name = "Start/Stop",
 		description = "Start/Stop button",
-		position = 3)
+		position = 4)
 	default Button startStopButton()
 	{
 		return new Button();
