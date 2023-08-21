@@ -181,7 +181,7 @@ public class ChopperPlugin extends LoopedPlugin
 			if (Inventory.isFull())
 			{
 				MessageUtils.addMessage("Inventory is full!",ChatColorType.HIGHLIGHT);
-				Movement.walkTo(BankLocation.DRAYNOR_BANK);
+				Movement.walkTo(BankLocation.getNearest());
 //				NPC banker = NPCs.getNearest("Banker");
 //				if (banker != null)
 //				{
