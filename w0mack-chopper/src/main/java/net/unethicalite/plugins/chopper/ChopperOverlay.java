@@ -38,7 +38,6 @@ class ChopperOverlay extends Overlay
 
 		if (!plugin.isScriptStarted()
 			|| !config.makeFire()
-			|| !config.bankLogs()
 			|| fireArea == null
 			|| fireArea.isEmpty())
 		{
