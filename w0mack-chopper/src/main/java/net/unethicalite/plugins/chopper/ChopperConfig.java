@@ -21,14 +21,6 @@ public interface ChopperConfig extends Config
 		return Tree.REGULAR;
 	}
 
-	@ConfigItem(
-			keyName = "bankLocation",
-			name = "Location",
-			description = "Where are you cutting trees",
-			position = 1
-	)
-	default BankLocation bankLocation() {return BankLocation.getNearest();}
-
 
 	@ConfigItem(
 			keyName = "makeFire",
@@ -45,7 +37,7 @@ public interface ChopperConfig extends Config
 			keyName = "bankLogs",
 			name = "Bank Logs",
 			description = "Make fire while chopping",
-			position = 3
+			position = 1
 	)
 	default boolean bankLogs()
 	{
@@ -56,7 +48,7 @@ public interface ChopperConfig extends Config
 		keyName = "Start",
 		name = "Start/Stop",
 		description = "Start/Stop button",
-		position = 4)
+		position = 3)
 	default Button startStopButton()
 	{
 		return new Button();
