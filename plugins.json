@@ -7,7 +7,7 @@
   "releases": [{
     "date": "2023-08-17",
     "sha512sum": "B76B02B4D420ECC63B7F3F93E6A08BCFC3180ABC65271CA940E1009E78768F800A5DF9D3C25DE5A02F60AC945881D1C530ED8F22780C62FC4B6B33C13FDF45B3",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.0.6.jar?raw=true",
     "requires": "^1.0.0"
   }]
