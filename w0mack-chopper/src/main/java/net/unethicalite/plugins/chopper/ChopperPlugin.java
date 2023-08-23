@@ -103,6 +103,7 @@ public class ChopperPlugin extends LoopedPlugin
 		}
 	}
 
+
 	protected boolean isEmptyTile(Tile tile)
 	{
 		return tile != null
@@ -125,7 +126,7 @@ public class ChopperPlugin extends LoopedPlugin
 		}
 
 		var tree = TileObjects
-				.getSurrounding(startLocation, 8, config.tree().getNames())
+				.getSurrounding(startLocation, 30, config.tree().getNames())
 				.stream()
 				.min(Comparator.comparing(x -> x.distanceTo(local.getWorldLocation())))
 				.orElse(null);
@@ -182,19 +183,15 @@ public class ChopperPlugin extends LoopedPlugin
 			{
 				MessageUtils.addMessage("Inventory is full!",ChatColorType.HIGHLIGHT);
 				Movement.walkTo(BankLocation.getNearest());
-//				NPC banker = NPCs.getNearest("Banker");
-//				if (banker != null)
-//				{
-//					Movement.walkTo(BankLocation.DRAYNOR_BANK);
-//					banker.interact("Bank");
-//					return -3;
-//				}
+
 				MessageUtils.addMessage("Walking to the closest bank!", ChatColorType.HIGHLIGHT);
 				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Bank"));
 				if (bank != null)
 				{
 					bank.interact("Bank");
-					Bank.depositInventory();
+					String log = Inventory.getFirst(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs")).toString();
+					int num = Inventory.getCount(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs"));
+					Bank.deposit(log, num);
 
 					if(Inventory.isEmpty()){
 						Bank.close();

@@ -37,9 +37,7 @@ class ChopperOverlay extends Overlay
 		List<Tile> fireArea = plugin.getFireArea();
 
 		if (!plugin.isScriptStarted()
-			|| !config.bankLogs()
-			|| fireArea == null
-			|| fireArea.isEmpty())
+			|| !config.bankLogs())
 		{
 			return null;
 		}
@@ -47,6 +45,7 @@ class ChopperOverlay extends Overlay
 		for (Tile t : plugin.getFireArea())
 		{
 			Tile tile = Tiles.getAt(t.getWorldLocation());
+
 			if (plugin.isEmptyTile(tile))
 			{
 				tile.getWorldLocation().outline(client, graphics2D, Color.GREEN, "Empty tile");
