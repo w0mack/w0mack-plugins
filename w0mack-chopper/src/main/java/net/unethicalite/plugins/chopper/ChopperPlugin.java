@@ -131,52 +131,52 @@ public class ChopperPlugin extends LoopedPlugin
 				.orElse(null);
 
 		var logs = Inventory.getFirst(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs"));
-		if (config.makeFire())
-		{
-			var tinderbox = Inventory.getFirst("Tinderbox");
-			if (logs != null && tinderbox != null)
-			{
-				var emptyTile = fireArea == null || fireArea.isEmpty() ? null : fireArea.stream()
-						.filter(t ->
-						{
-							Tile tile = Tiles.getAt(t.getWorldLocation());
-							return tile != null && isEmptyTile(tile);
-						})
-						.min(Comparator.comparingInt(wp -> wp.distanceTo(local)))
-						.orElse(null);
-
-				if (fireArea.isEmpty() || emptyTile == null)
-				{
-					fireArea = generateFireArea(3);
-					log.debug("Generating fire area");
-					return 1000;
-				}
-
-				if (emptyTile != null)
-				{
-					if (!emptyTile.getWorldLocation().equals(local.getWorldLocation()))
-					{
-						if (local.isMoving())
-						{
-							return 333;
-						}
-
-						Movement.walk(emptyTile);
-						return 1000;
-					}
-
-					if (local.isAnimating())
-					{
-						return 333;
-					}
-
-					fmCooldown = 4;
-					tinderbox.useOn(logs);
-					return 500;
-				}
-			}
-		}
-		else if (config.bankLogs())
+//		if (config.makeFire())
+//		{
+//			var tinderbox = Inventory.getFirst("Tinderbox");
+//			if (logs != null && tinderbox != null)
+//			{
+//				var emptyTile = fireArea == null || fireArea.isEmpty() ? null : fireArea.stream()
+//						.filter(t ->
+//						{
+//							Tile tile = Tiles.getAt(t.getWorldLocation());
+//							return tile != null && isEmptyTile(tile);
+//						})
+//						.min(Comparator.comparingInt(wp -> wp.distanceTo(local)))
+//						.orElse(null);
+//
+//				if (fireArea.isEmpty() || emptyTile == null)
+//				{
+//					fireArea = generateFireArea(3);
+//					log.debug("Generating fire area");
+//					return 1000;
+//				}
+//
+//				if (emptyTile != null)
+//				{
+//					if (!emptyTile.getWorldLocation().equals(local.getWorldLocation()))
+//					{
+//						if (local.isMoving())
+//						{
+//							return 333;
+//						}
+//
+//						Movement.walk(emptyTile);
+//						return 1000;
+//					}
+//
+//					if (local.isAnimating())
+//					{
+//						return 333;
+//					}
+//
+//					fmCooldown = 4;
+//					tinderbox.useOn(logs);
+//					return 500;
+//				}
+//			}
+//		}
+		if (config.bankLogs())
 		{
 			if (Inventory.isFull())
 			{
@@ -195,12 +195,11 @@ public class ChopperPlugin extends LoopedPlugin
 				{
 					bank.interact("Bank");
 					Bank.depositInventory();
-					try {
-						wait(5000);
-					} catch (InterruptedException e) {
-						throw new RuntimeException(e);
+
+					if(Inventory.isEmpty()){
+						Bank.close();
 					}
-					Bank.close();
+
 					return -3;
 				}
 				MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);

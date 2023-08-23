@@ -37,7 +37,7 @@ class ChopperOverlay extends Overlay
 		List<Tile> fireArea = plugin.getFireArea();
 
 		if (!plugin.isScriptStarted()
-			|| !config.makeFire()
+			|| !config.bankLogs()
 			|| fireArea == null
 			|| fireArea.isEmpty())
 		{
