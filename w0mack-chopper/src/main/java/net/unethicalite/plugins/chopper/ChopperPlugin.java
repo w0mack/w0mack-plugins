@@ -189,9 +189,7 @@ public class ChopperPlugin extends LoopedPlugin
 				if (bank != null)
 				{
 					bank.interact("Bank");
-					String log = Inventory.getFirst(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs")).toString();
-					int num = Inventory.getCount(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs"));
-					Bank.deposit(log, num);
+					Bank.depositInventory();
 
 					if(Inventory.isEmpty()){
 						Bank.close();
