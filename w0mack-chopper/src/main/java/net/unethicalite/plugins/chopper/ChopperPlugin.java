@@ -131,8 +131,8 @@ public class ChopperPlugin extends LoopedPlugin
 				.min(Comparator.comparing(x -> x.distanceTo(local.getWorldLocation())))
 				.orElse(null);
 
-		String logs = Inventory.getFirst(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs")).toString();
-		var logz = Inventory.getFirst(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs"));
+		var logs = Inventory.getFirst(x -> x.getName().toLowerCase(Locale.ROOT).contains("logs"));
+		int logID = logs.getId();
 //		if (config.makeFire())
 //		{
 //			var tinderbox = Inventory.getFirst("Tinderbox");
@@ -189,8 +189,9 @@ public class ChopperPlugin extends LoopedPlugin
 				TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Bank"));
 				if (bank != null)
 				{
+				//	System.out.println(logID);
 					bank.interact("Bank");
-					Bank.depositAll(logs);
+					Bank.depositAll(logID);
 					//Bank.depositInventory();
 
 					if(Inventory.isEmpty()){
@@ -205,9 +206,9 @@ public class ChopperPlugin extends LoopedPlugin
 		}
 		else
 		{
-			if (logz != null && !local.isAnimating())
+			if (logs != null && !local.isAnimating())
 			{
-				logz.drop();
+				logs.drop();
 				return 500;
 			}
 		}
