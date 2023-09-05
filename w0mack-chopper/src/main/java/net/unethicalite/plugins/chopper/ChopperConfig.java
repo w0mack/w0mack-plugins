@@ -17,17 +17,6 @@ public interface ChopperConfig extends Config {
         return Tree.REGULAR;
     }
 
-//	@ConfigItem(
-//			keyName = "makeFire",
-//			name = "Make fire",
-//			description = "Make fire while chopping",
-//			position = 1
-//	)
-//	default boolean makeFire()
-//	{
-//		return false;
-//	}
-
     @ConfigItem(
             keyName = "bankLogs",
             name = "Bank Logs",

@@ -31,6 +31,7 @@ import net.unethicalite.api.widgets.Widgets;
 import org.pf4j.Extension;
 
 import javax.inject.Inject;
+import java.awt.dnd.DropTarget;
 import java.text.NumberFormat;
 import java.util.Comparator;
 import java.util.List;
@@ -57,7 +58,6 @@ public class ChopperPlugin extends LoopedPlugin {
     @Inject
     private GlobalCollisionMap collisionMap;
 
-    private int fmCooldown = 0;
 
     @Getter(AccessLevel.PROTECTED)
     private List<Tile> fireArea;
@@ -102,7 +102,7 @@ public class ChopperPlugin extends LoopedPlugin {
                 return;
             }
             startLocation = local.getWorldLocation();
-            //fireArea = generateFireArea(3);
+
             this.scriptStarted = true;
             log.info("Script started");
         }
@@ -129,12 +129,16 @@ public class ChopperPlugin extends LoopedPlugin {
 
     @Override
     protected int loop() {
+
+        if (!scriptStarted) {
+            return 1000;
+        }
+
         var local = Players.getLocal();
         if (local == null) {
             return -1;
         }
-
-        var logs = Inventory.getFirst(x->x.getName().contains("logs"));
+        int logID = 0;
 
         var tree = TileObjects
                 .getSurrounding(startLocation, 10, config.tree().getNames())
@@ -144,25 +148,17 @@ public class ChopperPlugin extends LoopedPlugin {
 
         if (config.bankLogs()) {
             if (Inventory.isFull()) {
-                //MessageUtils.addMessage("Inventory is full!", ChatColorType.HIGHLIGHT);
+
                 Movement.walkTo(BankLocation.getNearest());
                 CurrentTaskStatus = "Running to bank!";
-                //MessageUtils.addMessage("Walking to the closest bank!", ChatColorType.HIGHLIGHT);
-                TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Bank"));
-                int logID = logs.getId();
 
-                if (tree.getName().equals("Tree") || tree.getName().equals("Evergreen tree")) return logID=ItemID.LOGS;
-                if (tree.getName().equals("Oak tree")) return logID=ItemID.OAK_LOGS;
-                if (tree.getName().equals("Teak tree")) return logID=ItemID.TEAK_LOGS;
-                if (tree.getName().equals("Maple tree")) return logID=ItemID.MAPLE_LOGS;
-                if (tree.getName().equals("Mahogany tree")) return  logID=ItemID.MAHOGANY_LOGS;
-                if (tree.getName().equals("Yew tree")) return logID=ItemID.YEW_LOGS;
-                if (tree.getName().equals("Magic tree")) return logID=ItemID.MAGIC_LOGS;
-                if (tree.getName().equals("Redwood tree")) return logID=ItemID.REDWOOD_LOGS;
+                TileObject bank = TileObjects.getFirstSurrounding(local.getWorldLocation(), 10, obj -> obj.hasAction("Bank"));
 
                 if (bank != null) {
+                    if (!Bank.isOpen()) {
+                        return BankHelper.clickLocalBank();
+                    }
 
-                    bank.interact("Bank");
                     if (Bank.isOpen()) {
                                 log.info("FULL OF LOGS! TRYING TO DEPOSIT!");
                                 Time.sleepTick();
@@ -173,16 +169,14 @@ public class ChopperPlugin extends LoopedPlugin {
                                     Bank.close();
                                 }
                     }
-
-
                     return -3;
                 }
                 MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
                 return -1;
             }
         } else {
-            if (logs != null && !local.isAnimating())
-            {
+            var logs = Inventory.getFirst(x->x.getName().contains("logs"));
+            if(logs != null && !local.isAnimating()){
                 logs.drop();
                 return 500;
             }
@@ -204,9 +198,9 @@ public class ChopperPlugin extends LoopedPlugin {
 
     @Subscribe
     private void onGameTick(GameTick e) {
-        if (client.getGameState() != GameState.LOGGED_IN) {
-            return;
-        }
+//        if (client.getGameState() != GameState.LOGGED_IN) {
+//            return;
+//        }
         //log.info("ticked");
         CurrentXP = Math.abs(startXP - client.getSkillExperience(Skill.WOODCUTTING));
     }
