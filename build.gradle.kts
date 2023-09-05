@@ -13,22 +13,22 @@ plugins {
     kotlin("jvm") version "1.6.21"
 }
 
-project.extra["GithubUrl"] = "https://github.com/w0mack/w0mack-plugins"
-project.extra["GithubUserName"] = "w0mack"
-project.extra["GithubRepoName"] = "w0mack-plugins"
+project.extra["GithubUrl"] = "https://github.com/melxin/devious-plugins-extended"
+project.extra["GithubUserName"] = "melxin"
+project.extra["GithubRepoName"] = "devious-plugins-extended"
 
 apply<BootstrapPlugin>()
 
 allprojects {
     group = "net.unethicalite"
 
-    project.extra["PluginProvider"] = "w0mack"
+    project.extra["PluginProvider"] = "melxin"
     project.extra["ProjectSupportUrl"] = ""
     project.extra["PluginLicense"] = "3-Clause BSD License"
 
     apply<JavaPlugin>()
     apply(plugin = "java-library")
-//    apply(plugin = "kotlin")
+    apply(plugin = "kotlin")
     apply(plugin = "checkstyle")
 
     repositories {
@@ -68,8 +68,8 @@ allprojects {
             fileMode = 420
         }
 
-//        compileKotlin {
-//            kotlinOptions.jvmTarget = "11"
-//        }
+        compileKotlin {
+            kotlinOptions.jvmTarget = "11"
+        }
     }
 }
