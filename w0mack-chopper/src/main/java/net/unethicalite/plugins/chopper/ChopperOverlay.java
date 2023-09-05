@@ -44,8 +44,7 @@ class ChopperOverlay extends Overlay {
     @Override
     public Dimension render(Graphics2D graphics2D) {
 
-        if (!plugin.isScriptStarted()
-                || !config.bankLogs()) {
+        if (!plugin.isScriptStarted()) {
             return null;
         }
 

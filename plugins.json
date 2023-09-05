@@ -1,6 +1,6 @@
 [{
   "projectUrl": "",
-  "provider": "Womack",
+  "provider": "womack",
   "name": "womack Chopper",
   "description": "0.1.9 Chops trees test",
   "id": "womack-chopper",
