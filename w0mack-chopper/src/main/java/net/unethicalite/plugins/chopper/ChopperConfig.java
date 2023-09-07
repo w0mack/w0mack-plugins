@@ -26,12 +26,21 @@ public interface ChopperConfig extends Config {
     default boolean bankLogs() {
         return false;
     }
+    @ConfigItem(
+            keyName = "neverLog",
+            name = "Never Log",
+            description = "Client will not log out. KEEP ON!",
+            position = 2
+    )
+    default boolean neverLog() {
+        return true;
+    }
 
     @ConfigItem(
             keyName = "Start",
             name = "Start/Stop",
             description = "Start/Stop button",
-            position = 2)
+            position = 3)
     default Button startStopButton() {
         return new Button();
     }
