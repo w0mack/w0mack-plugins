@@ -25,16 +25,6 @@
 
 rootProject.name = "w0mack-plugins"
 
-//include("hoot-blackjack")
-//include("hoot-trawler")
-//include("hoot-pickpocket")
-//include("hoot-aerialfishing")
-//include("hoot-chins")
-//include("hoot-notifier")
-//include("hoot-karambwanfisher")
-
-//include("hoot-tempoross")
-
 include("unethical-fighter")
 include("unethical-butler")
 include("unethical-birdhouses")
@@ -45,6 +35,7 @@ include("unethical-agility")
 include("unethical-prayer")
 include("unethical-explorer")
 include("w0mack-chopper")
+include("w0mack-mining")
 include("unethical-zulrah")
 include("unethical-cooker")
 include("unethical-bankpin")
@@ -52,11 +43,6 @@ include("unethical-tempoross")
 include("unethical-pickpocket")
 include("unethical-logout")
 
-//include("m-autoswitcher")
-//include("m-powerfisher")
-// include("m-wintertodt")
-
-//include("example-kotlin")
 
 for (project in rootProject.children) {
     project.apply {
@@ -67,3 +53,4 @@ for (project in rootProject.children) {
         require(buildFile.isFile) { "Project '${project.path} must have a $buildFile build script" }
     }
 }
+include("w0mack-mining")
