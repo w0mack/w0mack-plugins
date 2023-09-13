@@ -1,4 +1,4 @@
-package net.unethicalite.plugins.chopper;
+package net.unethicalite.plugins.mining;
 
 import com.google.inject.Singleton;
 import com.openosrs.client.ui.overlay.components.table.TableAlignment;
@@ -21,14 +21,14 @@ import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 
 @Singleton
-class ChopperOverlay extends Overlay {
+class MiningOverlay extends Overlay {
     private final Client client;
-    private final ChopperPlugin plugin;
-    private final ChopperConfig config;
+    private final MiningPlugin plugin;
+    private final MiningConfig config;
     private final PanelComponent panelComponent = new PanelComponent();
 
     @Inject
-    private ChopperOverlay(Client client, ChopperPlugin plugin, ChopperConfig config) {
+    private MiningOverlay(Client client, MiningPlugin plugin, MiningConfig config) {
         this.client = client;
         this.plugin = plugin;
         this.config = config;
@@ -61,7 +61,7 @@ class ChopperOverlay extends Overlay {
         tableComponent.addRow("Time running: " + df.format(new Date(end)));
 
         int XPPerHour = (int) (plugin.CurrentXP / ((System.currentTimeMillis() - plugin.start) / 3600000.0D));
-        tableComponent.addRow("XP Gained: " + plugin.CurrentXP, "XP Per hr: " + ChopperPlugin.convertToRSUnits(XPPerHour));
+        tableComponent.addRow("XP Gained: " + plugin.CurrentXP, "XP Per hr: " + MiningPlugin.convertToRSUnits(XPPerHour));
 
         if(!tableComponent.isEmpty()){
             panelComponent.getChildren().add(tableComponent);

@@ -1,4 +1,4 @@
-package net.unethicalite.plugins.chopper;
+package net.unethicalite.plugins.mining;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Item;

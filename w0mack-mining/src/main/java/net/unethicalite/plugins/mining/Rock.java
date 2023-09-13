@@ -1,4 +1,4 @@
-package net.unethicalite.plugins.chopper;
+package net.unethicalite.plugins.mining;
 
 import lombok.Getter;
 
@@ -13,16 +13,16 @@ public enum Rock {
     GRANITE(45, "Granite"),
     MITHRIL(55, "Mithril"),
     ADAMANTITE(70, "Adamant"),
-    TE_SALT(72, "Te Salt")
-    EFH_SALT(72, "Efh Salt")
-    URT_SALT(72, "Urt Salt")
-    BASALT(72, "Basalt");
+    TE_SALT(72, "Te Salt"),
+    EFH_SALT(72, "Efh Salt"),
+    URT_SALT(72, "Urt Salt"),
+    BASALT(72, "Basalt"),
     AMETHYST(92, "Amethyst");
 
     private final int level;
     private final String[] names;
 
-    Tree(int level, String... names) {
+    Rock(int level, String... names) {
         this.level = level;
         this.names = names;
     }

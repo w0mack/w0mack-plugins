@@ -1,4 +1,4 @@
-package net.unethicalite.plugins.chopper;
+package net.unethicalite.plugins.mining;
 
 import com.google.inject.Provides;
 import lombok.AccessLevel;
@@ -40,15 +40,15 @@ import java.util.List;
         enabledByDefault = false
 )
 @Slf4j
-public class ChopperPlugin extends LoopedPlugin {
+public class MiningPlugin extends LoopedPlugin {
     @Inject
-    private ChopperConfig config;
+    private MiningConfig config;
 
     @Inject
     private OverlayManager overlayManager;
 
     @Inject
-    private ChopperOverlay chopperOverlay;
+    private MiningOverlay chopperOverlay;
 
     @Inject
     private GlobalCollisionMap collisionMap;
@@ -201,8 +201,8 @@ public class ChopperPlugin extends LoopedPlugin {
     }
 
     @Provides
-    ChopperConfig provideConfig(ConfigManager configManager) {
-        return configManager.getConfig(ChopperConfig.class);
+    MiningConfig provideConfig(ConfigManager configManager) {
+        return configManager.getConfig(MiningConfig.class);
     }
 
 }

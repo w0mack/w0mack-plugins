@@ -1,4 +1,4 @@
-package net.unethicalite.plugins.chopper;
+package net.unethicalite.plugins.mining;
 
 import net.runelite.client.config.Button;
 import net.runelite.client.config.Config;
@@ -6,15 +6,15 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup("w0mack-mining")
-public interface ChopperConfig extends Config {
+public interface MiningConfig extends Config {
     @ConfigItem(
-            keyName = "tree",
-            name = "Tree type",
-            description = "The type of tree to chop",
+            keyName = "rock",
+            name = "Rock type",
+            description = "The type of rock to mine",
             position = 0
     )
-    default Tree tree() {
-        return Tree.REGULAR;
+    default Rock rock() {
+        return Rock.COPPER;
     }
 
     @ConfigItem(
