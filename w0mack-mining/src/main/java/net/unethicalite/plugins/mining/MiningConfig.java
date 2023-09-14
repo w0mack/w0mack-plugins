@@ -14,16 +14,16 @@ public interface MiningConfig extends Config {
             position = 0
     )
     default Rock rock() {
-        return Rock.COPPER;
+        return Rock.IRON;
     }
 
     @ConfigItem(
-            keyName = "bankLogs",
-            name = "Bank Logs",
-            description = "Make fire while chopping",
+            keyName = "bankOre",
+            name = "Bank Ore",
+            description = "Bank ore",
             position = 1
     )
-    default boolean bankLogs() {
+    default boolean bankOre() {
         return false;
     }
 

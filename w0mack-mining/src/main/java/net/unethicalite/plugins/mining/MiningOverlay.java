@@ -58,10 +58,10 @@ class MiningOverlay extends Overlay {
 
         DateFormat df = new SimpleDateFormat("HH ':' mm ':' ss ");
         df.setTimeZone(TimeZone.getTimeZone("GTM+0"));
-        tableComponent.addRow("Time running: " + df.format(new Date(end)));
+//        tableComponent.addRow("Time running: " + df.format(new Date(end)));
 
-        int XPPerHour = (int) (plugin.CurrentXP / ((System.currentTimeMillis() - plugin.start) / 3600000.0D));
-        tableComponent.addRow("XP Gained: " + plugin.CurrentXP, "XP Per hr: " + MiningPlugin.convertToRSUnits(XPPerHour));
+//        int XPPerHour = (int) (plugin.CurrentXP / ((System.currentTimeMillis() - plugin.start) / 3600000.0D));
+//        tableComponent.addRow("XP Gained: " + plugin.CurrentXP, "XP Per hr: " + MiningPlugin.convertToRSUnits(XPPerHour));
 
         if(!tableComponent.isEmpty()){
             panelComponent.getChildren().add(tableComponent);

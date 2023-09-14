@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum Rock {
     COPPER(1, "Copper"),
     TIN(1, "Tin"),
-    IRON(15, "Iron"),
+    IRON(15, "Iron rocks"),
     COAL(30, "Coal"),
     GOLD(40, "Gold"),
     GEM(40, "Gem"),

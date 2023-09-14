@@ -54,9 +54,6 @@ public class MiningPlugin extends LoopedPlugin {
     private GlobalCollisionMap collisionMap;
 
 
-    @Getter(AccessLevel.PROTECTED)
-    private List<Tile> fireArea;
-
     private WorldPoint startLocation = null;
 
     @Getter(AccessLevel.PROTECTED)
@@ -73,7 +70,7 @@ public class MiningPlugin extends LoopedPlugin {
     @Override
     protected void startUp() {
         overlayManager.add(chopperOverlay);
-        startXP = client.getSkillExperience(Skill.WOODCUTTING);
+        startXP = client.getSkillExperience(Skill.MINING);
         start = System.currentTimeMillis();
     }
 
@@ -85,7 +82,7 @@ public class MiningPlugin extends LoopedPlugin {
 
     @Subscribe
     public void onConfigButtonPressed(ConfigButtonClicked event) {
-        if (!event.getGroup().contains("w0mack-chopper") || !event.getKey().toLowerCase().contains("start")) {
+        if (!event.getGroup().contains("w0mack-mining") || !event.getKey().toLowerCase().contains("start")) {
             return;
         }
 
@@ -116,7 +113,6 @@ public class MiningPlugin extends LoopedPlugin {
         }
 
         int formattedNumber = (int) Math.ceil((double) number / divisor);
-
         // Using the NumberFormat class to add commas
         NumberFormat nf = NumberFormat.getInstance();
         return nf.format(formattedNumber) + postfix;
@@ -135,13 +131,13 @@ public class MiningPlugin extends LoopedPlugin {
         }
         int logID = 0;
 
-        var tree = TileObjects
-                .getSurrounding(startLocation, 10, config.tree().getNames())
+        var rock = TileObjects
+                .getSurrounding(startLocation, 10, config.rock().getNames())
                 .stream()
                 .min(Comparator.comparing(x -> x.distanceTo(local.getWorldLocation())))
                 .orElse(null);
 
-        if (config.bankLogs()) {
+        if (config.bankOre()) {
             if (Inventory.isFull()) {
 
                 Movement.walkTo(BankLocation.getNearest());
@@ -170,24 +166,36 @@ public class MiningPlugin extends LoopedPlugin {
                 return -1;
             }
         } else {
-            var logs = Inventory.getFirst(x->x.getName().contains("logs"));
-            if(logs != null && !local.isAnimating()){
-                logs.drop();
+            var ore = Inventory.getFirst(x->x.getName().contains("ore"));
+            if(!config.bankOre())
+            {
+                int oreCount = Inventory.getCount(ore.getId());
+                while (Inventory.getCount(ore.getId()) > 0) {
+                    CurrentTaskStatus = "Dropping Ore!";
+                    ore.drop();
+                    System.out.println("Dropping ore...");
+                }
                 return 500;
             }
+//            if(ore != null && !local.isAnimating()){
+//                CurrentTaskStatus = "Dropping ore!";
+//                ore.drop();
+//                return 500;
+//            }
         }
 
         if (local.isMoving() || local.isAnimating()) {
             return 333;
         }
 
-        if (tree == null) {
+        if (rock == null) {
             log.debug("Could not find any trees");
             return 1000;
         }
 
-        tree.interact("Chop down");
-        CurrentTaskStatus = "Cutting " + tree.getName();
+
+        rock.interact("Mine");
+        CurrentTaskStatus = "Mining " + rock.getName();
         return 1000;
     }
 
