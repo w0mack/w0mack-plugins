@@ -23,6 +23,7 @@ import net.unethicalite.api.items.Inventory;
 import net.unethicalite.api.movement.Movement;
 import net.unethicalite.api.movement.Reachable;
 import net.unethicalite.api.movement.pathfinder.GlobalCollisionMap;
+import net.unethicalite.api.movement.pathfinder.Walker;
 import net.unethicalite.api.movement.pathfinder.model.BankLocation;
 import net.unethicalite.api.plugins.LoopedPlugin;
 import net.unethicalite.api.scene.Tiles;
@@ -32,16 +33,11 @@ import org.pf4j.Extension;
 
 import javax.inject.Inject;
 import java.awt.dnd.DropTarget;
-import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
-
-import static java.awt.event.InputEvent.BUTTON1_DOWN_MASK;
 
 @Extension
 @PluginDescriptor(
@@ -79,8 +75,6 @@ public class ChopperPlugin extends LoopedPlugin {
     public int CurrentXP = 0, startXP = 0;
 
     public long start;
-
-    private long randomDelay = 0;
 
     @Override
     protected void startUp() {
@@ -170,16 +164,15 @@ public class ChopperPlugin extends LoopedPlugin {
                                 log.info("FULL OF LOGS! TRYING TO DEPOSIT!");
                                 Time.sleepTick();
                                 if(!Bank.Inventory.getAll().isEmpty()) {
-                                    Item log1 = Bank.Inventory.getFirst(x->x.getName().contains("logs"));
                                     CurrentTaskStatus = "Depositing Inventory!";
-                                    Bank.depositAll(log1.getId());
+                                    Bank.depositAll(logID);
                                     Time.sleepTick();
                                     Bank.close();
                                 }
                     }
                     return -3;
                 }
-
+                MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
                 return -1;
             }
         } else {
@@ -195,6 +188,8 @@ public class ChopperPlugin extends LoopedPlugin {
         }
 
         if (tree == null) {
+            CurrentTaskStatus="Walking back to the trees";
+            Walker.walkTo(startLocation);
             log.debug("Could not find any trees");
             return 1000;
         }
@@ -209,33 +204,8 @@ public class ChopperPlugin extends LoopedPlugin {
 //        if (client.getGameState() != GameState.LOGGED_IN) {
 //            return;
 //        }
-        if (config.neverLog())
-        {
-            randomDelay = randomDelay();
-            Executors.newSingleThreadExecutor()
-                    .submit(this::pressKey);
-        }
         //log.info("ticked");
         CurrentXP = Math.abs(startXP - client.getSkillExperience(Skill.WOODCUTTING));
-    }
-    private long randomDelay()
-    {
-        return (long) clamp(Math.round(ThreadLocalRandom.current().nextGaussian() * 8000));
-    }
-
-    private double clamp(double value)
-    {
-        return Math.max(1, Math.min(13000, value));
-    }
-
-    private void pressKey()
-    {
-        KeyEvent keyPress = new KeyEvent(client.getCanvas(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), BUTTON1_DOWN_MASK, KeyEvent.VK_BACK_SPACE);
-        client.getCanvas().dispatchEvent(keyPress);
-        KeyEvent keyRelease = new KeyEvent(client.getCanvas(), KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, KeyEvent.VK_BACK_SPACE);
-        client.getCanvas().dispatchEvent(keyRelease);
-        KeyEvent keyTyped = new KeyEvent(client.getCanvas(), KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, KeyEvent.VK_BACK_SPACE);
-        client.getCanvas().dispatchEvent(keyTyped);
     }
 
     @Provides
