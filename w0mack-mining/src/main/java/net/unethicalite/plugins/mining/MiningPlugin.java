@@ -23,6 +23,7 @@ import net.unethicalite.api.items.Bank;
 import net.unethicalite.api.items.Inventory;
 import net.unethicalite.api.movement.Movement;
 import net.unethicalite.api.movement.pathfinder.GlobalCollisionMap;
+import net.unethicalite.api.movement.pathfinder.Walker;
 import net.unethicalite.api.movement.pathfinder.model.BankLocation;
 import net.unethicalite.api.plugins.LoopedPlugin;
 import net.unethicalite.api.utils.MessageUtils;
@@ -129,13 +130,14 @@ public class MiningPlugin extends LoopedPlugin {
         if (local == null) {
             return -1;
         }
-        int logID = 0;
+        //int logID = 0;
 
         var rock = TileObjects
                 .getSurrounding(startLocation, 10, config.rock().getNames())
                 .stream()
                 .min(Comparator.comparing(x -> x.distanceTo(local.getWorldLocation())))
                 .orElse(null);
+        var ore = Inventory.getFirst(x->x.getName().contains("ore"));
 
         if (config.bankOre()) {
             if (Inventory.isFull()) {
@@ -155,33 +157,46 @@ public class MiningPlugin extends LoopedPlugin {
                                 Time.sleepTick();
                                 if(!Bank.Inventory.getAll().isEmpty()) {
                                     CurrentTaskStatus = "Depositing Inventory!";
-                                    Bank.depositAll(logID);
+                                    Bank.depositAll(ore.getId());
                                     Time.sleepTick();
                                     Bank.close();
                                 }
                     }
                     return -3;
                 }
-                MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
+                //lMessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
                 return -1;
             }
-        } else {
-            var ore = Inventory.getFirst(x->x.getName().contains("ore"));
-            if(!config.bankOre())
-            {
+        } else  if (config.tick()){
+            var knife = Inventory.getFirst(x->x.getName().contains("knife"));
+            var logs = Inventory.getFirst(x->x.getName().contains("logs"));
+
                 int oreCount = Inventory.getCount(ore.getId());
-                while (Inventory.getCount(ore.getId()) > 0) {
-                    CurrentTaskStatus = "Dropping Ore!";
+                while (oreCount > 0) {
+                    CurrentTaskStatus="Mining " + rock.getName();
+                    rock.interact("Mine");
+                    Time.sleep(2);
+                    CurrentTaskStatus="Using knife";
+                    knife.interact("Use");
+                    Time.sleep(1);
+                    CurrentTaskStatus="Logs";
+                    logs.interact("Use");
+                    Time.sleep(2);
+                    CurrentTaskStatus="Dropping ore!";
                     ore.drop();
                     System.out.println("Dropping ore...");
+
+                    oreCount = Inventory.getCount(ore.getId());
                 }
+                return -1;
+
+        } else {
+             if(ore != null && !local.isAnimating())
+             {
+                CurrentTaskStatus = "Dropping ore!";
+                ore.drop();
                 return 500;
             }
-//            if(ore != null && !local.isAnimating()){
-//                CurrentTaskStatus = "Dropping ore!";
-//                ore.drop();
-//                return 500;
-//            }
         }
 
         if (local.isMoving() || local.isAnimating()) {
@@ -189,13 +204,16 @@ public class MiningPlugin extends LoopedPlugin {
         }
 
         if (rock == null) {
+            Walker.walkTo(startLocation);
             log.debug("Could not find any trees");
             return 1000;
         }
-
+        CurrentTaskStatus="Walking back to starting location!";
+        //Movement.walkTo(startLocation);
 
         rock.interact("Mine");
         CurrentTaskStatus = "Mining " + rock.getName();
+
         return 1000;
     }
 

@@ -28,10 +28,19 @@ public interface MiningConfig extends Config {
     }
 
     @ConfigItem(
+            keyName = "tick",
+            name = "3t",
+            description = "3-tick",
+            position = 2
+    )
+    default boolean tick() {
+        return false;
+    }
+    @ConfigItem(
             keyName = "Start",
             name = "Start/Stop",
             description = "Start/Stop button",
-            position = 2)
+            position = 3)
     default Button startStopButton() {
         return new Button();
     }
