@@ -18,6 +18,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.unethicalite.api.commons.Time;
 import net.unethicalite.api.entities.Players;
+import net.unethicalite.api.entities.Projectiles;
 import net.unethicalite.api.entities.TileObjects;
 import net.unethicalite.api.items.Bank;
 import net.unethicalite.api.items.Inventory;
@@ -203,6 +204,8 @@ public class MiningPlugin extends LoopedPlugin {
             return 333;
         }
 
+
+
         if (rock == null) {
             Walker.walkTo(startLocation);
             log.debug("Could not find any trees");
@@ -223,7 +226,7 @@ public class MiningPlugin extends LoopedPlugin {
 //            return;
 //        }
         //log.info("ticked");
-        CurrentXP = Math.abs(startXP - client.getSkillExperience(Skill.WOODCUTTING));
+        CurrentXP = Math.abs(startXP - client.getSkillExperience(Skill.MINING));
     }
 
     @Provides

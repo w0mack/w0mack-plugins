@@ -36,6 +36,7 @@ public interface MiningConfig extends Config {
     default boolean tick() {
         return false;
     }
+
     @ConfigItem(
             keyName = "Start",
             name = "Start/Stop",
