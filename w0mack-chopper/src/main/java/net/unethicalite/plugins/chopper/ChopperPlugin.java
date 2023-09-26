@@ -165,6 +165,7 @@ public class ChopperPlugin extends LoopedPlugin {
                                 log.info("FULL OF LOGS! TRYING TO DEPOSIT!");
                                 Time.sleepTick();
                                 if(!Bank.Inventory.getAll().isEmpty()) {
+                                    logID = Bank.Inventory.getFirst(x->x.getName().contains("logs")).getId();
                                     CurrentTaskStatus = "Depositing Inventory!";
                                     System.out.println(logID);
                                     Bank.depositAll(logID);
