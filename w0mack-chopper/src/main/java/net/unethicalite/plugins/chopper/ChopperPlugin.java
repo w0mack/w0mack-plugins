@@ -172,7 +172,7 @@ public class ChopperPlugin extends LoopedPlugin {
                     }
                     return -3;
                 }
-                MessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
+
                 return -1;
             }
         } else {
