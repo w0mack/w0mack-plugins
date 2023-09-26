@@ -6,16 +6,16 @@
   "id": "womack-chopper",
   "releases": [{
     "date": "2023-09-16",
-    "sha512sum": "70681F36DFB8256DCEA690518A2E25B6DE7BFC598EC300701D2A4C372E7D0E96E277BF7BF0BD281B7839A567B651EEB3A997C33BAA64A4ED4BAB9EF1EFAEEBF9",
+    "sha512sum": "82321C521F6A09CFFE250DF890C50492E9EB52479399BD020A3A7E29C7437FE37618710B83C09B3C40FBA487516BCC8114F0C85A5ADDD24F8462A5FAD6A60A7C",
     "version": "0.2.2",
-    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.2.1.jar?raw=true",
+    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.2.2.jar?raw=true",
     "requires": "^1.0.0"
   }],
   "projectUrl": "",
   "provider": "womack",
   "name": "womack Mining",
   "description": "0.1.1 Mines ores",
-  "id": "womack-chopper",
+  "id": "womack-mining",
   "releases": [{
     "date": "2023-09-16",
     "sha512sum": "6040543BB13CFED4C487AC02E73EC0024E104ADDFBF9BEEDE313272448FFAEA247BE2D97214681B0128E0A0FE8DE2564FB04ED1551257A391ADE4A7BDCC17F6E",

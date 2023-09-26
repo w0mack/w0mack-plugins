@@ -142,7 +142,7 @@ public class ChopperPlugin extends LoopedPlugin {
         int logID = 0;
 
         var tree = TileObjects
-                .getSurrounding(startLocation, 10, config.tree().getNames())
+                .getSurrounding(startLocation, 30, config.tree().getNames())
                 .stream()
                 .min(Comparator.comparing(x -> x.distanceTo(local.getWorldLocation())))
                 .orElse(null);
@@ -167,8 +167,8 @@ public class ChopperPlugin extends LoopedPlugin {
                                 if(!Bank.Inventory.getAll().isEmpty()) {
                                     logID = Bank.Inventory.getFirst(x->x.getName().contains("logs")).getId();
                                     CurrentTaskStatus = "Depositing Inventory!";
-                                    System.out.println(logID);
-                                    Bank.depositAll(logID);
+                                    System.out.println(logs.getId());
+                                    Bank.depositAll(logs.getId());
                                     Time.sleepTick();
                                     Bank.close();
                                 }
