@@ -2,13 +2,13 @@
   "projectUrl": "",
   "provider": "womack",
   "name": "womack Chopper",
-  "description": "0.2.0 Chops trees",
+  "description": "0.2.1 Chops trees",
   "id": "womack-chopper",
   "releases": [{
     "date": "2023-09-16",
-    "sha512sum": "2D6425DD6EE1C6D82AFE4857A9855C6FB71EAEABE5E71158C8EE14C6EC36F6C6C3F89313DF0D757454A2A6AE1B23B2AE05DF8DA705FCDBB9673B3250283BE83B",
-    "version": "0.2.0",
-    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.2.0.jar?raw=true",
+    "sha512sum": "6DB89E9AF0562FCE6048B3D08CB212EF0B83A237A6CCE7FE76003C466B4EA660809DC3CC14AFFB898AE416D2039A8514C487BDB495A5566906F5AE69BC258CF8",
+    "version": "0.2.1",
+    "url": "https://github.com/w0mack/w0mack-plugins/blob/master/release/w0mack-chopper-0.2.1.jar?raw=true",
     "requires": "^1.0.0"
   }],
   "projectUrl": "",

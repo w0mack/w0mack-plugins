@@ -146,6 +146,7 @@ public class ChopperPlugin extends LoopedPlugin {
                 .stream()
                 .min(Comparator.comparing(x -> x.distanceTo(local.getWorldLocation())))
                 .orElse(null);
+        var logs = Inventory.getFirst(x->x.getName().contains("logs"));
 
         if (config.bankLogs()) {
             if (Inventory.isFull()) {
@@ -165,6 +166,7 @@ public class ChopperPlugin extends LoopedPlugin {
                                 Time.sleepTick();
                                 if(!Bank.Inventory.getAll().isEmpty()) {
                                     CurrentTaskStatus = "Depositing Inventory!";
+                                    System.out.println(logID);
                                     Bank.depositAll(logID);
                                     Time.sleepTick();
                                     Bank.close();
@@ -176,7 +178,6 @@ public class ChopperPlugin extends LoopedPlugin {
                 return -1;
             }
         } else {
-            var logs = Inventory.getFirst(x->x.getName().contains("logs"));
             if(logs != null && !local.isAnimating()){
                 logs.drop();
                 return 500;
