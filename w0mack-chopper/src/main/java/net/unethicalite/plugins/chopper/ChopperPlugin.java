@@ -148,6 +148,10 @@ public class ChopperPlugin extends LoopedPlugin {
                 .orElse(null);
         var logs = Inventory.getFirst(x->x.getName().contains("logs"));
 
+        if (logs == null){
+            logs = Inventory.getFirst(x->x.getName().contains("Logs"));
+        }
+
         if (config.bankLogs()) {
             if (Inventory.isFull()) {
 
@@ -165,6 +169,7 @@ public class ChopperPlugin extends LoopedPlugin {
                                 log.info("FULL OF LOGS! TRYING TO DEPOSIT!");
                                 Time.sleepTick();
                                 if(!Bank.Inventory.getAll().isEmpty()) {
+                                    System.out.println(logs.getId());
                                     CurrentTaskStatus = "Depositing Inventory!";
                                     Bank.depositAll(logs.getId());
                                     Time.sleepTick();
@@ -173,7 +178,6 @@ public class ChopperPlugin extends LoopedPlugin {
                     }
                     return -3;
                 }
-
                 return -1;
             }
         } else {
@@ -187,13 +191,17 @@ public class ChopperPlugin extends LoopedPlugin {
             return 333;
         }
 
+        if(local.isMoving()){
+            CurrentTaskStatus="Walking to " + tree.getName();
+            return 222;
+        }
+
         if (tree == null) {
-            CurrentTaskStatus="Waiting on " + tree.getName();
+            //CurrentTaskStatus="Waiting on " + tree.getName();
             Walker.walkTo(startLocation);
-            log.debug("Could not find any trees");
+            //log.debug("Could not find any trees");
             return 1000;
         }
-        CurrentTaskStatus="Walking back to the trees";
         tree.interact("Chop down");
         CurrentTaskStatus = "Cutting " + tree.getName();
         return 1000;
