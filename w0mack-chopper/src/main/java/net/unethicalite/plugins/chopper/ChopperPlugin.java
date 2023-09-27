@@ -165,9 +165,7 @@ public class ChopperPlugin extends LoopedPlugin {
                                 log.info("FULL OF LOGS! TRYING TO DEPOSIT!");
                                 Time.sleepTick();
                                 if(!Bank.Inventory.getAll().isEmpty()) {
-                                    logID = Bank.Inventory.getFirst(x->x.getName().contains("logs")).getId();
                                     CurrentTaskStatus = "Depositing Inventory!";
-                                    System.out.println(logs.getId());
                                     Bank.depositAll(logs.getId());
                                     Time.sleepTick();
                                     Bank.close();
@@ -190,12 +188,12 @@ public class ChopperPlugin extends LoopedPlugin {
         }
 
         if (tree == null) {
-            CurrentTaskStatus="Walking back to the trees";
+            CurrentTaskStatus="Waiting on " + tree.getName();
             Walker.walkTo(startLocation);
             log.debug("Could not find any trees");
             return 1000;
         }
-
+        CurrentTaskStatus="Walking back to the trees";
         tree.interact("Chop down");
         CurrentTaskStatus = "Cutting " + tree.getName();
         return 1000;

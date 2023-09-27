@@ -165,7 +165,7 @@ public class MiningPlugin extends LoopedPlugin {
                     }
                     return -3;
                 }
-                //lMessageUtils.addMessage("Can't find the closest bank! Good bye!", ChatColorType.HIGHLIGHT);
+
                 return -1;
             }
         } else  if (config.tick()){
@@ -203,8 +203,6 @@ public class MiningPlugin extends LoopedPlugin {
         if (local.isMoving() || local.isAnimating()) {
             return 333;
         }
-
-
 
         if (rock == null) {
             Walker.walkTo(startLocation);
