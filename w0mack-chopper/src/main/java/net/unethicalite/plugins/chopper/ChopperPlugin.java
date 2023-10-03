@@ -182,7 +182,15 @@ public class ChopperPlugin extends LoopedPlugin {
             }
         } else {
             if(logs != null && !local.isAnimating()){
-                logs.drop();
+                if(Inventory.isFull()) {
+                    List<Item> matchingLogs = Inventory.getAll(logs.getName());
+                    for (Item item : matchingLogs) {
+                        CurrentTaskStatus="Dropping Logs!";
+                        item.drop();
+                        Time.sleepTick(); // Adjust the sleep duration as needed
+                    }
+                }
+                tree.interact("Chop down");
                 return 500;
             }
         }
@@ -206,14 +214,9 @@ public class ChopperPlugin extends LoopedPlugin {
         CurrentTaskStatus = "Cutting " + tree.getName();
         return 1000;
     }
-
     @Subscribe
     private void onGameTick(GameTick e) {
-//        if (client.getGameState() != GameState.LOGGED_IN) {
-//            return;
-//        }
-        //log.info("ticked");
-        CurrentXP = Math.abs(startXP - client.getSkillExperience(Skill.WOODCUTTING));
+
     }
 
     @Provides
